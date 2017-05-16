@@ -1,4 +1,4 @@
-package maps.services.servicemodel;
+package maps.domain;
 
 /**
  * Created by zany on 5/14/17.
@@ -26,7 +26,7 @@ public class Element {
         this.status = status;
     }
 
-    public Distance getDistance() {
+    Distance getDistance() {
         return distance;
     }
 
@@ -34,7 +34,7 @@ public class Element {
         this.distance = distance;
     }
 
-    public Duration getDuration() {
+    Duration getDuration() {
         return duration;
     }
 

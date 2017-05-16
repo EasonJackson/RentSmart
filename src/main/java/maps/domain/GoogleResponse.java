@@ -1,6 +1,4 @@
-package maps.services.servicemodel;
-
-import maps.DisAndTime;
+package maps.domain;
 
 import java.util.List;
 

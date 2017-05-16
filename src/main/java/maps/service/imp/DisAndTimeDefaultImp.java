@@ -1,7 +1,8 @@
-package maps.services;
+package maps.service.imp;
 
-import maps.DisAndTime;
-import maps.services.servicemodel.GoogleResponse;
+import maps.domain.DisAndTime;
+import maps.domain.GoogleResponse;
+import maps.service.DisAndTimeService;
 import org.springframework.stereotype.Service;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
  * Serve calculation of distance and traveling time from origin and destination
  */
 @Service
-public class DisAndTimeService {
+public class DisAndTimeDefaultImp implements DisAndTimeService {
 
 
     private static final String HOST = "maps.googleapis.com";
@@ -25,7 +26,7 @@ public class DisAndTimeService {
      * @param origin address depart from
      * @param desti address arrive at
      * @param mode the mean of transportation
-     * @return
+     * @return DisAndTime object
      */
     public DisAndTime getDisAndTime(String origin,
                                     String desti,

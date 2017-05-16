@@ -1,4 +1,4 @@
-package maps;
+package maps.domain;
 
 /**
  * Created by zany on 5/14/17.
@@ -11,7 +11,7 @@ public class DisAndTime {
     private String destination;
     private String mode;
 
-    public DisAndTime() {}
+    DisAndTime() {}
 
     public DisAndTime(String distance, String time, String origin, String destination, String mode) {
         this.distance = distance;
@@ -25,7 +25,7 @@ public class DisAndTime {
         return origin;
     }
 
-    public void setOrigin(String origin) {
+    void setOrigin(String origin) {
         this.origin = origin;
     }
 
@@ -33,7 +33,7 @@ public class DisAndTime {
         return destination;
     }
 
-    public void setDestination(String destination) {
+    void setDestination(String destination) {
         this.destination = destination;
     }
 
@@ -49,7 +49,7 @@ public class DisAndTime {
         return distance;
     }
 
-    public void setDistance(String distance) {
+    void setDistance(String distance) {
         this.distance = distance;
     }
 
@@ -57,7 +57,7 @@ public class DisAndTime {
         return time;
     }
 
-    public void setTime(String time) {
+    void setTime(String time) {
         this.time = time;
     }
 }

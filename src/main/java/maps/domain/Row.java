@@ -1,4 +1,4 @@
-package maps.services.servicemodel;
+package maps.domain;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class Row {
         this.elements = elements;
     }
 
-    public List<Element> getElements() {
+    List<Element> getElements() {
         return elements;
     }
 

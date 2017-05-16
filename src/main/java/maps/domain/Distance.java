@@ -1,22 +1,22 @@
-package maps.services.servicemodel;
+package maps.domain;
 
 /**
  * Created by zany on 5/14/17.
  * sub-element of Element
  */
-public class Duration {
+public class Distance {
 
     private String text;
     private int value;
 
-    public Duration() {}
+    public Distance() {}
 
-    public Duration(String text, int value) {
+    public Distance(String text, int value) {
         this.text = text;
         this.value = value;
     }
 
-    public String getText() {
+    String getText() {
         return text;
     }
 
