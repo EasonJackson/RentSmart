@@ -11,8 +11,10 @@ URL = '''http://www.condo.com'''
 PRICE = '''//div[@class='unit-cover-text']/h4/text()'''
 BEDS_BATH = '''//div[@class='unit-cover-text']/h2/text()'''
 ADDRESS = '''//div[@class='col-xs-8 col-sm-6 map-thumb']/h2/text()'''
-SIZE = '''//div[@class='unit-cover-text']/h2/text()'''
-SIMILAR = '''//div[@class='media-box-image']/div[@class='thumbnail-overlay pointer']/div[@class='aligment']/div[@class='aligment']/a/@href'''
+#SIMILAR = '''//div[@class='thumbnail-overlay pointer']/div[@class='aligment']/div[@class='aligment']/a//@href'''
+SIMILAR = '''//a/@href'''
+
+SIMILAR_REGEX = '\/property\/.*'
 
 def search_rent(url):
 	req_session = requests.session()
@@ -42,48 +44,44 @@ def getInfo(url):
 
 	# Get beds and bath
 	try:
-		beds_bath = tree.xpath(BEDS_BATH)
-		print beds_bath
+		beds_bath_size = tree.xpath(BEDS_BATH)
+		print beds_bath_size
 	except Exception:
-		beds_bath = ["0 beds/0 bath"]
+		beds_bath_size = ["0 beds~0 bath"]
 
-	beds = []
-	bath = []
-	#or item in beds_bath:
-	#	beds.append(item.split("/")[0])
-	#	bath.append(item.split("/")[1])
+	beds = {}
+	bath = {}
+	size = {}
+
+	beds = beds_bath_size[0].split('~')[0]
+	bath = beds_bath_size[0].split('~')[1]
+	if len(beds_bath_size) > 2:
+		size = beds_bath_size[0].split('~')[2]
+	else:
+		size = "Not available"
+
+	print "beds: " + beds + ", bath: " + bath + ", size: " + size
 
 	# Get address
 	try:
 		address_raw = tree.xpath(ADDRESS)
-		address = ''
-		for i in range(0, len(address_raw) - 1):
-			address = address + address_raw[i]
-		address.strip(' ')
+		address = address_raw[0] + ", " + address_raw[1]
 		print address
 	except Exception:
 		address = "Not available"
 
-	# Get apt size
-	try:
-		size = tree.xpath(SIZE)
-		print size
-	except Exception:
-		size = [0,0]
-
-
-	# Get contact info
-	try:
-		contacts = tree.xpath(CONTACTS)
-		print contacts
-	except Exception:
-		contacts = "Not available"
-
-
 	# Get similar rental link
 	try:
 		similar = tree.xpath(SIMILAR)
-		print similar
+		#print similar
+		for x in similar:
+			#print x + '\t'
+			try:
+				m = re.search(SIMIARL_REGEX, '\''+ x +'\'')
+				print m.group(0)
+			except Exception:
+				pass
+			
 	except Exception:
 		similar = {}
 
@@ -93,7 +91,6 @@ def getInfo(url):
 			'Bath' : bath,
 			'Size' : size,
 			'Address' : address,
-			'Contacts' : contacts,
 			'Similar' : similar
 			}
 
