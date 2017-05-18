@@ -1,0 +1,8 @@
+server:
+ port: 7776
+
+googlevars:
+ host: maps.googleapis.com
+ path: /maps/api/distancematrix/json
+ unit: imperial
+ key: AIzaSyCicbo5g2QmMOfViB1WHz3ua8kyP1oXDlU

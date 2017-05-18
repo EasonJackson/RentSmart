@@ -3,6 +3,8 @@ package maps.service.imp;
 import maps.domain.DisAndTime;
 import maps.domain.GoogleResponse;
 import maps.service.DisAndTimeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.web.client.RestTemplate;
@@ -15,10 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class DisAndTimeDefaultImp implements DisAndTimeService {
 
-
-    private static final String HOST = "maps.googleapis.com";
-    private static final String PATH = "/maps/api/distancematrix/json";
-    private static final String KEY = "AIzaSyCicbo5g2QmMOfViB1WHz3ua8kyP1oXDlU";
+    @Autowired
+    private Environment environment;
 
     /**
      * This method provides core service logic. It takes three inputs and gives a DisAndTime object
@@ -31,12 +31,17 @@ public class DisAndTimeDefaultImp implements DisAndTimeService {
     public DisAndTime getDisAndTime(String origin,
                                     String desti,
                                     String mode) {
+
+        String HOST = environment.getRequiredProperty("googlevars.host");
+        String PATH = environment.getRequiredProperty("googlevars.path");
+        String UNIT = environment.getRequiredProperty("googlevars.unit");
+        String KEY = environment.getRequiredProperty("googlevars.key");
         // build uri for google maps API call
         URIBuilder builder = new URIBuilder();
         builder.setScheme("https");
         builder.setHost(HOST);
         builder.setPath(PATH);
-        builder.addParameter("units","imperial");   // response unit in mile
+        builder.addParameter("units",UNIT);   // response unit in mile
         builder.addParameter("origins", origin);
         builder.addParameter("destinations", desti);
         builder.addParameter("mode", mode);
