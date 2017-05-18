@@ -9,7 +9,9 @@ import lombok.Data;
 public @Data class DisAndTime {
 
     private String distance;
+    private int disValue;
     private String time;
+    private int timeValue;
     private String origin;
     private String destination;
     private String mode;

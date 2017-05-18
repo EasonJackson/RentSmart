@@ -71,6 +71,8 @@ public @Data class GoogleResponse {
         disAndTime.setOrigin(origin_addresses.get(0));
         disAndTime.setDistance(rows.get(0).getElements().get(0).getDistance().getText());
         disAndTime.setTime(rows.get(0).getElements().get(0).getDuration().getText());
+        disAndTime.setDisValue(rows.get(0).getElements().get(0).getDistance().getValue());
+        disAndTime.setTimeValue(rows.get(0).getElements().get(0).getDuration().getValue());
         return disAndTime;
     }
 }
