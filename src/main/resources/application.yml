@@ -1,8 +1,13 @@
+spring:
+  application.name: maps
+
 server:
- port: 7776
+ port: 7777
 
 googlevars:
  host: maps.googleapis.com
  path: /maps/api/distancematrix/json
  unit: imperial
  key: AIzaSyCicbo5g2QmMOfViB1WHz3ua8kyP1oXDlU
+eureka:
+ client.serviceUrl.defaultZone: http://localhost:9000/eureka/
